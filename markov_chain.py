@@ -17,10 +17,12 @@ def create_chain():
     markov_chain = collections.defaultdict(MarkovCounter)
     return markov_chain
 
+
 def add_to_chain(markov_chain, l, order):
     arguments = [l[i:] for i in range(1, order+1)]
     for vals in zip(l, *arguments):
         markov_chain[vals[:-1]][vals[-1]] += 1
+
 
 def pick_start(markov_chain):
     ret = []
@@ -28,4 +30,6 @@ def pick_start(markov_chain):
         if i[0][0].isupper():
             ret.append(i)
 
+
     return random.choice(ret)
+    

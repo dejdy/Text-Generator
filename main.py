@@ -14,6 +14,7 @@ def load_text(path):
         data = data.replace(i, ' ')
     return data.split()
 
+
 def load_json(path):
     to_add_space = ".!?:;,"
     with open(path) as json_file:
@@ -31,6 +32,7 @@ def load_json(path):
         ret.append(words.split())
 
     return ret
+
 
 def generate_words(chain, order, no_sentences=1):
     words = ""
@@ -70,7 +72,7 @@ def build_chain(directory, order, use_json):
 @click.command()
 @click.option('-d', '--directory',
                 default='texts', show_default=True,
-                help='Directory with input texts (.txt file only).')
+                help='Directory with input texts (.txt or .json file only).')
 @click.option('-o', '--order',
                 default=2, show_default=True,
                 help='Order of Markov chain to use.')
@@ -78,7 +80,7 @@ def build_chain(directory, order, use_json):
                 default=1, show_default=True,
                 help='Number of sentences to generate')
 @click.option('-j', '--use-json',
-                default=False, show_default=True,
+                default=True, show_default=True,
                 help='Search for .json files instead of .txt')
 def main(directory, order, no_sentences, use_json):
     """Random text generator based on nth-order Markov chain"""
